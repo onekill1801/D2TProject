@@ -1,16 +1,174 @@
 <html>
     <head>
         <title>Calculate</title>
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="icon" type="image/png" href="icon.png">
+        <!-- <link rel="stylesheet" href="css/main.css"> -->
+        <!-- <link rel="icon" type="image/png" href="icon.png"> -->
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+        <style>
+            .myBtn{
+                display: block;
+                border: 0px;
+                border-radius: 0px;
+                height: 58px;
+                width: 125px;
+                line-height: 50px;
+                background: rgba(240, 240, 240);
+                font-size: 18px;
+            }
+            .myBtnOp{
+                font-size: 21px;
+                font-weight: bold;
+                background: white;
+                
+            }
+            .a{
+                /* background: gray;  */
+                margin-top: 20px;
+            }
+            .aa{
+                width: 520px; 
+                height: 600px; 
+                background:#E6E6E6; 
+                padding: 0px 15px;
+                border: 1px solid rgba(7, 86, 233, 0.863);
+            }
+            .aa1{
+                width: 470px;
+                height: 215px;
+                margin: 10px 0px 10px 15px;
+            }
+            .aa2{
+                margin: 0px;
+            }
+            .aa3{
+                /* width: 125.5px; */
+                padding: 1px 1px;
+            }
+            .btnM{
+                background: rgba(240, 240, 240);
+            }
+        </style>
     </head>
     <body>
-        
-
-
+        <div class="container a" ng-app="Calculate"> 
+            <div class="row center-block aa" ng-controller="calculateResult" ng-keydown="keyPush()" class="center-block" id="test">
+                <div class="row aa1">
+                    <div class="row " style="height: 38px;" >
+                        <div class="col-xs-6">Calculate</div>
+                        <div class="col-xs-6"style="text-align: right;"> - o x</div>
+                    </div>
+                    <div class="row" style="height: 38px;">
+                        <div class="col-xs-6"><b style="font-size: 18px">Standard</b></div>
+                        <div class="col-xs-6" style="text-align: right;"> reload</div>
+                    </div>
+                    <div class="row" style="height: 20px;">
+                        <div class="col-xs-12 " style="text-align: right;">{{total}} </div>
+                    </div>
+                    <div class="row" style="height: 93px;">
+                        <div class="col-xs-12" style="text-align: right;"><b style="font-size: 50px;">{{num}}</b> </div>                        
+                    </div>
+                    <div class="row" style="margin-right: auto; display: block; ">
+                        <div class="col-xs-2 btn btn-default btnM" > MC </div>
+                        <div class="col-xs-2 btn btn-default btnM" > MR </div>
+                        <div class="col-xs-2 btn btn-default btnM" > M+ </div>
+                        <div class="col-xs-2 btn btn-default btnM" > M- </div>
+                        <div class="col-xs-2 btn btn-default btnM" > MS </div>
+                        <div class="col-xs-2 btn btn-default btnM" > M </div>
+                    </div>
+                </div>
+                <div class="row " style="margin: 10px -10px;">
+                        <div class="row aa2">
+                            <div class="col-xs-3 aa3">
+                                <div class=" btn btn-default myBtn " >%</div>
+                            </div>
+                            <div class="col-xs-3 aa3">
+                                <div class=" btn btn-default myBtn">./-</div>                            
+                            </div>
+                            <div class="col-xs-3 aa3">
+                                <div class=" btn btn-default myBtn">x^2</div>                        
+                            </div>
+                            <div class="col-xs-3 aa3">
+                                <div class=" btn btn-default myBtn">1/x</div>                            
+                            </div>
+                        </div>
+                    <div class="row aa2">
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn" ng-click="clearAll()"><a >CE</a></div>
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn" ng-click="clearAll()">C</div>                            
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn" ng-click="subString()">Del</div>                        
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn" ng-click="setBtnOp('/')">/</div>                            
+                        </div>
+                    </div>
+                    <div class="row aa2">
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn myBtnOp" ng-click="setBtnNumber('7')">7</div>
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn myBtnOp" ng-click="setBtnNumber('8')">8</div>                            
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn myBtnOp" ng-click="setBtnNumber('9')">9</div>                        
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn" ng-click="setBtnOp('*')">x</div>                            
+                        </div>
+                    </div>
+                    <div class="row aa2">
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn myBtnOp" ng-click="setBtnNumber('4')">4</div>
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn myBtnOp" ng-click="setBtnNumber('5')">5</div>                            
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn myBtnOp" ng-click="setBtnNumber('6')">6</div>                        
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn" ng-click="setBtnOp('-')">-</div>                            
+                        </div>
+                    </div>
+                    <div class="row aa2">
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn myBtnOp" ng-click="setBtnNumber('1')">1</div>
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn myBtnOp" ng-click="setBtnNumber('2')">2</div>                            
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn myBtnOp" ng-click="setBtnNumber('3')">3</div>                        
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn" ng-click="setBtnOp('+')">+</div>                            
+                        </div>
+                    </div>
+                    <div class="row aa2">
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn" ng-click="negNumber()">±</div>
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn myBtnOp" ng-click="setBtnNumber('0')">0</div>                            
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn" ng-click="dotNumber()">.</div>                        
+                        </div>
+                        <div class="col-xs-3 aa3">
+                            <div class=" btn btn-default myBtn" ng-click="Calculate()">=</div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Bootstrap"><svg class="d-block" width="36" height="36" viewBox="0 0 612 612" xmlns="http://www.w3.org/2000/svg" focusable="false"><title>Bootstrap</title><path fill="currentColor" d="M510 8a94.3 94.3 0 0 1 94 94v408a94.3 94.3 0 0 1-94 94H102a94.3 94.3 0 0 1-94-94V102a94.3 94.3 0 0 1 94-94h408m0-8H102C45.9 0 0 45.9 0 102v408c0 56.1 45.9 102 102 102h408c56.1 0 102-45.9 102-102V102C612 45.9 566.1 0 510 0z"></path><path fill="currentColor" d="M196.77 471.5V154.43h124.15c54.27 0 91 31.64 91 79.1 0 33-24.17 63.72-54.71 69.21v1.76c43.07 5.49 70.75 35.82 70.75 78 0 55.81-40 89-107.45 89zm39.55-180.4h63.28c46.8 0 72.29-18.68 72.29-53 0-31.42-21.53-48.78-60-48.78h-75.57zm78.22 145.46c47.68 0 72.73-19.34 72.73-56s-25.93-55.37-76.46-55.37h-74.49v111.4z"></path></svg>
+        </a>
+        <a class="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="https://github.com/twbs/bootstrap/archive/v4.0.0.zip">Download</a>
         <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
