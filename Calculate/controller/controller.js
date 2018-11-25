@@ -3,23 +3,41 @@ var app = angular.module("Calculate",[]);
 app.controller("calculateResult", function($scope){
     $scope.num = "0";
     $scope.total = "";
+    $scope.temp = "";
     $scope.sessionDot = true;
+    $scope.sessionOp = true;
+    $scope.sessionOp1 = true;
 
     $scope.setBtnNumber= function(btn){
-        if($scope.num == "0"){
-            $scope.num = btn ;
-        }
-        else {
-           $scope.num+=btn;
+        if($scope.num.length < 17){
+            $scope.temp = '';
+            if($scope.num == "0"){
+                $scope.num = btn ;
+            }
+            else {
+            $scope.num= $scope.num + btn;
+            }
         }
     }
     $scope.setBtnOp= function(btn){
-        var sum = $scope.total + $scope.num;
-        $scope.total = $scope.total + $scope.num + btn;
-        $scope.num = eval(sum) + '';
+        if($scope.sessionOp){
+            $scope.total = $scope.total + ' ' + $scope.num + ' ' + sBtn;
+            $scope.sessionOp = false;
+        }
+        else{
+            $scope.temp = '';
+            var sum = $scope.total + $scope.num;
+            $scope.total = $scope.total + ' ' + $scope.num + ' ' + sBtn;
+            $scope.temp = eval(sum) + '';
+        }
+        $scope.num = '';
     }
     $scope.Calculate= function(){
-        $scope.num = eval($scope.total);
+        $scope.temp = '';
+        $scope.total = $scope.total + ' ' + $scope.num;
+        $scope.temp = eval($scope.total);
+        $scope.num ='';
+        $scope.total = '';
     }
     $scope.subString = function(){
         if($scope.num){
@@ -33,9 +51,13 @@ app.controller("calculateResult", function($scope){
     $scope.clearAll = function () {
         $scope.num = "0";
         $scope.total = "";
+        $scope.sessionOp = true;
+        scope.sessionDot = true;
     }
     $scope.clearNum = function () {
+        $scope.temp = '';
         $scope.num = "0";
+        $scope.sessionDot = true;
     }
     $scope.negNumber = function(){
         $scope.num = 0 - $scope.num;
@@ -82,6 +104,33 @@ function keyPush(event){
             break;
         case 48:
             scope.setBtnNumber("0");
+            break;
+        case 61:
+            scope.Calculate();
+            break;
+        case 13:
+            scope.Calculate();
+            break;
+        case 8:
+            scope.subString();
+            break;
+        case 107:
+            scope.setBtnOp('+');
+            break;
+        case 109:
+            scope.setBtnOp('-');
+            break;
+        case 106:
+            scope.setBtnOp('*');
+            break;
+        case 111:
+            scope.setBtnOp('/');
+            break;
+        case 110:
+            scope.dotNumber();
+            break;
+        case 192:
+            scope.negNumber();
             break;
     }
     if (!scope.$phase) scope.$apply();
