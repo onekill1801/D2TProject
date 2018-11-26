@@ -51,6 +51,7 @@ app.controller("calculateResult", function($scope){
     $scope.clearAll = function () {
         $scope.num = "0";
         $scope.total = "";
+        $scope.temp = '';
         $scope.sessionOp = true;
         scope.sessionDot = true;
     }
