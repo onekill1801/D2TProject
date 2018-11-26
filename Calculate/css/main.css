@@ -1,3 +1,50 @@
-body{
+.myBtn{
+    display: block;
+    border: 0px;
+    border-radius: 0px;
+    height: 58px;
+    width: 125px;
+    line-height: 50px;
+    background: rgba(240, 240, 240);
+    font-size: 18px;
+}
+.myBtnOp{
+    font-size: 30px;
+    font-weight: bold;
+    background: white;
     
+}
+.a{
+    /* background: gray;  */
+    margin-top: 20px;
+}
+.aa{
+    width: 520px; 
+    height: 600px; 
+    background:#E6E6E6; 
+    padding: 0px 15px;
+    border: 1px solid rgba(7, 86, 233, 0.863);
+}
+.aa1{
+    width: 470px;
+    height: 215px;
+    margin: 10px 0px 10px 15px;
+}
+.aa2{
+    margin: 0px;
+}
+.aa3{
+    /* width: 125.5px; */
+    padding: 1px 1px;
+}
+.btnM{
+    background: rgba(240, 240, 240);
+    border-radius: 0px;
+}
+svg {
+    stroke: #000;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
 }

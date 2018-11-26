@@ -15,14 +15,15 @@ app.controller("calculateResult", function($scope){
                 $scope.num = btn ;
             }
             else {
-            $scope.num= $scope.num + btn;
+                $scope.num= $scope.num + btn;
             }
         }
+        
     }
     $scope.setBtnOp= function(btn){
         if($scope.sessionOp){
-            $scope.total = $scope.total + ' ' + $scope.num + ' ' + btn;
             $scope.sessionOp = false;
+            $scope.total = $scope.total + ' ' + $scope.num + ' ' + btn;
         }
         else{
             $scope.temp = '';
