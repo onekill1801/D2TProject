@@ -21,13 +21,13 @@ app.controller("calculateResult", function($scope){
     }
     $scope.setBtnOp= function(btn){
         if($scope.sessionOp){
-            $scope.total = $scope.total + ' ' + $scope.num + ' ' + sBtn;
+            $scope.total = $scope.total + ' ' + $scope.num + ' ' + btn;
             $scope.sessionOp = false;
         }
         else{
             $scope.temp = '';
             var sum = $scope.total + $scope.num;
-            $scope.total = $scope.total + ' ' + $scope.num + ' ' + sBtn;
+            $scope.total = $scope.total + ' ' + $scope.num + ' ' + btn;
             $scope.temp = eval(sum) + '';
         }
         $scope.num = '';
